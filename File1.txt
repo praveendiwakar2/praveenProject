@@ -4,3 +4,13 @@ java class()
 {
   print ("hi")
 }
+
+import jenkins.model.Jenkins
+
+RTC_Item_Type = "FDM"
+RTC_Item = "${FdmBranch.trim()}"
+def RTC_Item_="${RTC_Item.replace(' ', '_')}"
+def NEW_JOB_NAME="NPS_Pipeline_for_${RTC_Item_Type}_${RTC_Item_}"
+def NEW_JOB_DISPLAY_NAME="FDM build using Git Repo for Branch ${FdmBranch.trim()}"
+def target_stream=""
+def BuildFailedEmailTemplate = """Stage '%STAGE%' for Jenkins job '${NEW_JOB_DISPLAY_NAME}' has failed to run without errors.
